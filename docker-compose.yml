@@ -1,0 +1,9 @@
+web:
+  image: nginx:1.21
+  ports:
+    - "8080:80"
+  volumes:
+    - ./data/site:/site
+    - ./nginx/conf.d/site.conf:/etc/nginx/conf.d/site.conf
+    - ./nginx/log:/var/log/nginx
+
