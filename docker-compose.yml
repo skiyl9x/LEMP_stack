@@ -4,7 +4,7 @@ web:
     - "8080:80"
   volumes:
     - ./data/site:/site
-    - ./conf/nginx/site.conf:/etc/nginx/conf.d/site.conf
+    - ./conf/nginx/wordpress.conf:/etc/nginx/conf.d/wordpress.conf
     - ./logs/nginx:/var/log/nginx
   links:
     - php
