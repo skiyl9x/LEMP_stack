@@ -4,12 +4,24 @@ web:
     - "8080:80"
   volumes:
     - ./data/site:/site
-    - ./nginx/conf.d/site.conf:/etc/nginx/conf.d/site.conf
-    - ./nginx/log:/var/log/nginx
+    - ./conf/nginx/site.conf:/etc/nginx/conf.d/site.conf
+    - ./logs/nginx:/var/log/nginx
   links:
     - php
+    - db
 
 php:
   image: php:7-fpm
   volumes:
     - ./data/site:/site
+
+db:
+  image: mariadb:10.7.1
+  ports:
+    - "3306:3306"
+  volumes:
+    - ./data/mysql:/var/lib/mysql
+    - ./logs/mysql:/var/log/mysql
+    - ./conf/mysql:/etc/mysql
+  environment:
+    MYSQL_ROOT_PASSWORD: password
