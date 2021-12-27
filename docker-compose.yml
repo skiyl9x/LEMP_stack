@@ -6,4 +6,10 @@ web:
     - ./data/site:/site
     - ./nginx/conf.d/site.conf:/etc/nginx/conf.d/site.conf
     - ./nginx/log:/var/log/nginx
+  links:
+    - php
 
+php:
+  image: php:7-fpm
+  volumes:
+    - ./data/site:/site
