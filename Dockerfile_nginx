@@ -1,3 +1,0 @@
-FROM nginx:1.21
-COPY ./conf/nginx/nginx.conf /etc/nginx/nginx.conf
-COPY ./conf/nginx/wordpress.conf /etc/nginx/conf.d/wordpress.conf

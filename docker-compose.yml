@@ -1,5 +1,5 @@
 web:
-  image: l9xhub/nginx:1.21
+  image: l9xhub/nginx1.21:latest
   ports:
     - "8080:80"
   volumes:
@@ -10,12 +10,12 @@ web:
     - db
 
 php:
-  image: php:7-fpm
+  image: l9xhub/php7-fpm:latest
   volumes:
     - ./data/site:/site
 
 db:
-  image: mariadb:10.7.1
+  image: l9xhub/mariadb10.7:latest
   ports:
     - "3306:3306"
   volumes:
