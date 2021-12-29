@@ -1,30 +1,30 @@
-web:
-  image: l9xhub/nginx1.21:latest
-  ports:
-    - "8080:80"
-  volumes:
-    - ./data/site:/site
-    - ./logs/nginx:/var/log/nginx
-  links:
-    - php
+version: '3'
+services:
+  web:
+    image: l9xhub/nginx1.21:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./data/site_wp:/site
+      - ./logs/nginx:/var/log/nginx
+    links:
+      - php
 
-php:
-  image: l9xhub/php7-fpm:latest
-  volumes:
-    - ./data/site:/site
-  depends_on:
-    - db
+  php:
+    image: l9xhub/php7-fpm:latest
+    volumes:
+      - ./data/site_wp:/site
+    links:
+      - db
 
-db:
-  image: l9xhub/mariadb10.7:latest
-  ports:
-    - "3306:3306"
-  volumes:
-    - ./data/mysql:/var/lib/mysql
-    - ./logs/mysql:/var/log/mysql
-    - ./conf/mysql:/etc/mysql
-  environment:
-    MYSQL_ROOT_PASSWORD: 8EKBeewE3RacqQU
-    MYSQL_DATABASE: wordpress
-    MYSQL_USER: wp_admin
-    MYSQL_PASSWORD: auTFvCe54bKH6dHc
+  db:
+    image: l9xhub/mariadb10.7:latest
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+      - ./logs/mysql:/var/log/mysql
+      - ./conf/mysql:/etc/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 8EKBeewE3RacqQU
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wp_admin
+      MYSQL_PASSWORD: auTFvCe54bKH6dHc
