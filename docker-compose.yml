@@ -7,12 +7,13 @@ web:
     - ./logs/nginx:/var/log/nginx
   links:
     - php
-    - db
 
 php:
   image: l9xhub/php7-fpm:latest
   volumes:
     - ./data/site:/site
+  depends_on:
+    - db
 
 db:
   image: l9xhub/mariadb10.7:latest
@@ -23,4 +24,7 @@ db:
     - ./logs/mysql:/var/log/mysql
     - ./conf/mysql:/etc/mysql
   environment:
-    MYSQL_ROOT_PASSWORD: password
+    MYSQL_ROOT_PASSWORD: 8EKBeewE3RacqQU
+    MYSQL_DATABASE: wordpress
+    MYSQL_USER: wp_admin
+    MYSQL_PASSWORD: auTFvCe54bKH6dHc
