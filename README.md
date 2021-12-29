@@ -1,3 +1,2 @@
-# WP_project
-
+# LEMP stack 
 
