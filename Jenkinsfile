@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh 'mysql --version'
+                sh 'sudo docker ps'
             }
         }
     }
