@@ -2,7 +2,7 @@ properties([pipelineTriggers([githubPush()])])
 
 node {
     stage ('Checkout'){
-        git branch: 'exampleBranch', url: 'https://github.com/example-org/example-repo.git'
+        git branch: 'main', url: 'https://github.com/skiyl9x/LEMP_stack.git'
     }
     stage ('Build'){
         // steps
