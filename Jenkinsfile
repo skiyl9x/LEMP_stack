@@ -1,7 +1,7 @@
 properties([pipelineTriggers([githubPush()])])
 
 pipeline {
-    agent any
+    agent {dockerfile true}
     stages {
         stage('Test') {
             steps {
