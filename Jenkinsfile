@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh 'echo "a"'
+                sh 'mysql -V'
             }
         }
     }
