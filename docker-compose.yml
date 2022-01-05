@@ -3,7 +3,7 @@ services:
   web:
     image: l9xhub/nginx1.21:latest
     ports:
-      - "8080:80"
+      - "8081:80"
     volumes:
       - ./data/site_wp:/site
       - ./logs/nginx:/var/log/nginx
