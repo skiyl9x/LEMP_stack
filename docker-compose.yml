@@ -1,7 +1,7 @@
 version: '3'
 services:
   web:
-    image: l9xhub/nginx1.21:latest
+    image: l9xhub/wp_nginx:latest
     ports:
       - "8081:80"
     volumes:
@@ -11,14 +11,14 @@ services:
       - php
 
   php:
-    image: l9xhub/php7-fpm:latest
+    image: l9xhub/wp_php7-fpm:latest
     volumes:
       - ./data/site_wp:/site
     links:
       - db
 
   db:
-    image: l9xhub/mariadb10.7:latest
+    image: l9xhub/wp-mariadb10:latest
     volumes:
       - ./data/mysql:/var/lib/mysql
       - ./logs/mysql:/var/log/mysql
