@@ -16,9 +16,9 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'docker images | grep nginx'
-                sh 'docker images | grep mariadb'
-                sh 'docker images | grep php-fpm'
+                sh 'docker images | grep wp_nginx'
+                sh 'docker images | grep wp_mariadb'
+                sh 'docker images | grep wp_php7-fpm'
                 sh 'docker-compose up -d'
                 sh 'docker ps'
             }
