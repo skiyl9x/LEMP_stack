@@ -17,7 +17,7 @@ pipeline {
             steps {
                 sh 'docker images | grep nginx'
                 sh 'docker images | grep mariadb'
-                sh 'docker images | grep php-fpm'`
+                sh 'docker images | grep php-fpm'
             }
         }
     }
