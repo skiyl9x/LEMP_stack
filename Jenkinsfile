@@ -5,7 +5,8 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                sh 'mysql -V'
+                sh 'docker build -t l9xhub/jenkins:latest'
+                sh 'docker images'
             }
         }
     }
