@@ -18,7 +18,7 @@ services:
       - db
 
   db:
-    image: l9xhub/wp-mariadb10:latest
+    image: l9xhub/wp_mariadb10:latest
     volumes:
       - ./data/mysql:/var/lib/mysql
       - ./logs/mysql:/var/log/mysql
