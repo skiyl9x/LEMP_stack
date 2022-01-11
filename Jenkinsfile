@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 git branch: 'main',
-                    credentialsId: '79ea8531-b8a6-4a2e-89fd-c51132cd3273',
+                    credentialsId: 'eb41fdb4-beeb-428a-9c0e-20b054fd2597',
                     url: 'git@github.com:skiyl9x/LEMP_stack.git'
                 sh 'docker build -t l9xhub/wp_mariadb:latest --target img1 .'
                 sh 'docker build -t l9xhub/wp_nginx:latest --target img2 .'
