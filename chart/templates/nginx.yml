@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-deploy
+  labels:
+    app: {{ .Release.Name }}
+spec:
+  selector:
+    matchLabels:
+      run: {{ .Release.Name }}
+  replicas: {{ .Values.replicaCount }} # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        run: {{ .Release.Name }}
+    spec:
+      containers:
+      - name : {{ .Release.Name }}
+        image: {{ .Values.container.image }}
+        ports:
+          - containerPort: 80
+      imagePullSecrets:
+      - name: private-registry-cred
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-service
+  labels:
+    run: {{ .Release.Name }}
+spec:
+  ports:
+  - name    : {{ .Release.Name }}-listener
+    port    : 80
+    protocol: TCP
+  selector:
+    project : {{ .Release.Name }}

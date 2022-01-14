@@ -1,0 +1,3 @@
+container:
+  image: my-registry.pp.ua:8483/web/nginx1.21:latest
+replicaCount: 2

@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php-deploy
+  labels:
+    app: php-app
+spec:
+  selector:
+    matchLabels:
+      run: php
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        run: php
+    spec:
+      containers:
+      - name: php
+        image: my-registry.pp.ua:8483/wordpress/php7-fpm:latest
+        ports:
+          - containerPort: 9000
+            name: php-port
+      imagePullSecrets:
+      - name: private-registry-cred
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: php
+  labels:
+    run: php
+spec:
+  ports:
+  - port: 9000
+    protocol: TCP
+  selector:
+    run: php
