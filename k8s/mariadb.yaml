@@ -20,7 +20,10 @@ spec:
             name: db-port
         env:
           - name: MYSQL_ROOT_PASSWORD
-            value: my-pass
+            valueFrom:
+              secretKeyRef:
+                name: wp-mariadb-secret
+                key: password
       imagePullSecrets:
       - name: private-registry-cred
 ---
