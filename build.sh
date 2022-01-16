@@ -19,14 +19,13 @@ DB_USER=user
 DB_PASS=$db_pass" > .env
 
 echo "* replace wp-config.php data"
-cp $site_dir/wp-config-sample.php $site_dir/wp-config.php; error $? "can't copy file"
-stat $site_dir/wp-config.php
-sed -i "s/database_name_here/wordpress/" $site_dir/wp-config.php; error $? "can't replase word"
-sed -i "s/username_here/user/" $site_dir/wp-config.php; error $? "can't replase word"
-sed -i "s/password_here/$db_pass/" $site_dir/wp-config.php; error $? "can't replase word"
-sed -i "s/localhost/db/" $site_dir/wp-config.php; error $? "can't replase word"
+cp $site_dir/wp-config-sample.php $site_dir/wp-config.php
+sed -i "s/database_name_here/wordpress/" $site_dir/wp-config.php
+sed -i "s/username_here/user/" $site_dir/wp-config.php
+sed -i "s/password_here/$db_pass/" $site_dir/wp-config.php
+sed -i "s/localhost/db/" $site_dir/wp-config.php
 echo "* deploy docker-compose.yml" 
-docker-compose up -d; error $? "can't up containers"
+docker-compose up ; error $? "can't up containers"
 
 echo "* import wordpress.sql to wordpress db"
 container_id=`docker ps --filter "expose=3306" --format "table {{.ID}}" | tail -1`
