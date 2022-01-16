@@ -2,6 +2,7 @@
 
 function error {
   echo -e "\nERROR: $1";
+  docker-compose down
   exit 1;
 }
 
