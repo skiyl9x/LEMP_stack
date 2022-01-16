@@ -7,6 +7,7 @@ function error {
   fi;
 }
 
+docker-compose down
 site_dir="./data/site"
 echo "* generate db passwords"
 root_pass=`date +%s | sha256sum | base64 | head -c 32 ; echo` #root mysql pass
@@ -25,7 +26,7 @@ sed -i "s/username_here/user/" $site_dir/wp-config.php
 sed -i "s/password_here/$db_pass/" $site_dir/wp-config.php
 sed -i "s/localhost/db/" $site_dir/wp-config.php
 echo "* deploy docker-compose.yml" 
-docker-compose up ; error $? "can't up containers"
+docker-compose up -d;
 
 echo "* import wordpress.sql to wordpress db"
 container_id=`docker ps --filter "expose=3306" --format "table {{.ID}}" | tail -1`
