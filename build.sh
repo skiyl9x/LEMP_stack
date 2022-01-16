@@ -1,5 +1,4 @@
 #!/bin/bash
-docker-compose down
 function error {
   if [ $1 -ne 0 ]; then
     echo -e "\n\e[31mERROR: $2\e[0m";
@@ -27,7 +26,7 @@ sed -i "s/username_here/user/" $site_dir/wp-config.php; error $? "can't replase 
 sed -i "s/password_here/$db_pass/" $site_dir/wp-config.php; error $? "can't replase word"
 sed -i "s/localhost/db/" $site_dir/wp-config.php; error $? "can't replase word"
 echo "* deploy docker-compose.yml" 
-docker-compose up -d
+docker-compose up -d; error $? "can't up containers"
 
 echo "* import wordpress.sql to wordpress db"
 container_id=`docker ps --filter "expose=3306" --format "table {{.ID}}" | tail -1`
