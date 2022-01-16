@@ -6,7 +6,7 @@ services:
       - "80:80"
     volumes:
       - ./conf/nginx:/etc/nginx/conf.d
-      - ./data/site_wp:/site
+      - ./data/site:/site
       - ./logs/nginx:/var/log/nginx
     links:
       - php
@@ -14,7 +14,7 @@ services:
   php:
     image: l9xhub/php7-fpm:latest
     volumes:
-      - ./data/site_wp:/site
+      - ./data/site:/site
     links:
       - db
 
