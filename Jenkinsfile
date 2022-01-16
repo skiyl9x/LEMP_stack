@@ -8,18 +8,12 @@ pipeline {
                 git branch: 'main',
                     credentialsId: 'eb41fdb4-beeb-428a-9c0e-20b054fd2597',
                     url: 'git@github.com:skiyl9x/LEMP_stack.git'
-                sh 'docker build -t l9xhub/mariadb10.7:latest --target img1 .'
-                sh 'docker build -t l9xhub/nginx1.21:latest --target img2 .'
-                sh 'docker build -t l9xhub/php7-fpm:latest --target img3 .'
+                   sh "./build.sh"
             }
         }
         stage('Test') {
             steps {
-                sh 'docker images | grep 9xhub/nginx1.21'
-                sh 'docker images | grep l9xhub/mariadb10.7'
-                sh 'docker images | grep l9xhub/php7-fpm'
-                sh 'docker-compose up -d'
-                sh 'docker ps'
+                sh './test.sh'
             }
         }
     }

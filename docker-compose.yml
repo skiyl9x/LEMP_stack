@@ -3,8 +3,9 @@ services:
   web:
     image: l9xhub/nginx1.21:latest
     ports:
-      - "8081:80"
+      - "80:80"
     volumes:
+      - ./conf/nginx:/etc/nginx/conf.d
       - ./data/site_wp:/site
       - ./logs/nginx:/var/log/nginx
     links:
@@ -20,11 +21,10 @@ services:
   db:
     image: l9xhub/mariadb10.7:latest
     volumes:
-      - ./data/mysql:/var/lib/mysql
       - ./logs/mysql:/var/log/mysql
       - ./conf/mysql:/etc/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: 8EKBeewE3RacqQU
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wp_admin
-      MYSQL_PASSWORD: auTFvCe54bKH6dHc
+      MYSQL_ROOT_PASSWORD: ${ROOT_PASS}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
