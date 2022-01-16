@@ -19,4 +19,3 @@ fi
 echo -e "\n* checking http status"
 curl -I http://localhost
 [[ `curl -Is http://my-registry.pp.ua | grep '200 OK'` ]] || error "bad http status";
-docker-compose down
