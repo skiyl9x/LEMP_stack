@@ -7,7 +7,6 @@ services:
     volumes:
       - ./conf/nginx:/etc/nginx/conf.d
       - ./data/site:/site
-      - ./logs/nginx:/var/log/nginx
     links:
       - php
 
