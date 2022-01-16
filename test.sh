@@ -2,7 +2,6 @@
 
 function error {
   echo -e "\nERROR: $1";
-  docker-compose down
   exit 1;
 }
 
@@ -19,3 +18,5 @@ fi
 echo -e "\n* checking http status"
 curl -I http://localhost
 [[ `curl -Is http://my-registry.pp.ua | grep '200 OK'` ]] || error "bad http status";
+
+docker-compose down
