@@ -1,28 +1,28 @@
 version: '3'
 services:
   web:
-    image: l9xhub/nginx1.21:latest
+    image: ${NGINX_IMAGE}
     ports:
       - "80:80"
     volumes:
-      - ./conf/nginx:/etc/nginx/conf.d
-      - ./data/site:/site
-      - ./logs/nginx:/var/log/nginx
+      - ${NGINX_CONFS}:/etc/nginx/conf.d/
+      - ${SITE_HOME_DIR}:/site/
+      - ${NGINX_LOGS}:/var/log/nginx/
     links:
       - php
 
   php:
     image: l9xhub/php7-fpm:latest
     volumes:
-      - ./data/site:/site
+      - ${SITE_HOME_DIR}:/site/
     links:
       - db
 
   db:
     image: l9xhub/mariadb10.7:latest
     volumes:
-      - ./logs/mysql:/var/log/mysql
-      - ./conf/mysql:/etc/mysql
+      - ${MYSQL_LOGS}:/var/log/mysql/
+      - ${MYSQL_CONFS}:/etc/mysql/
     environment:
       MYSQL_ROOT_PASSWORD: ${ROOT_PASS}
       MYSQL_DATABASE: ${DB_NAME}
