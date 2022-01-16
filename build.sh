@@ -27,4 +27,4 @@ container_id=`docker ps --filter "expose=3306" --format "table {{.ID}}" | tail -
 echo "* waiting 10 sec"
 sleep 10
 echo "* importing db"
-docker exec -i lemp_stack_db_1  mysql -uuser -p$db_pass wordpress < wordpress.sql
+docker exec -i lemp_stack_pipeline_db_1   mysql -uuser -p$db_pass wordpress < wordpress.sql
