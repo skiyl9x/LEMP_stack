@@ -16,7 +16,7 @@ if [ $number_up -ne "3" ]; then
 
 fi
 echo -e "\n* checking http status"
-curl -I http://localhost
-[[ `curl -Is http://localhost | grep '200 OK'` ]] || error "bad http status";
+curl -I http://my-registry.pp.ua
+[[ `curl -Is http://my-registry.pp.ua | grep '200 OK'` ]] || error "bad http status";
 
 docker-compose down
