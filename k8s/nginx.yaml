@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: my-registry.pp.ua:8483/web/nginx1.21:latest
+        image: l9xhub/nginx:latest
         ports:
           - containerPort: 80
       imagePullSecrets:

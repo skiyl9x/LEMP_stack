@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: php
-        image: my-registry.pp.ua:8483/wordpress/php7-fpm:latest
+        image: l9xhub/php-fpm:latest
         ports:
           - containerPort: 9000
             name: php-port
