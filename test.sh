@@ -8,10 +8,10 @@ function error {
 function clear_all {
   echo "* stop all containers"
   docker-compose down
-  source .env_examples
-  export NGINX_IMAGE PHP_IMAGE MARIADB_IMAGE
-  echo "* delete all images"
-  docker rmi $NGINX_IMAGE $PHP_IMAGE $MARIADB_IMAGE
+#  source .env_examples
+#  export NGINX_IMAGE PHP_IMAGE MARIADB_IMAGE
+#  echo "* delete all images"
+# docker rmi $NGINX_IMAGE $PHP_IMAGE $MARIADB_IMAGE
 }
 
 
