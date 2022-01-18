@@ -8,9 +8,6 @@ appVersion : "1.16.0"
 
 keywords:
   - nginx
-  - mariadb
-  - lemp 
-  - php5-fpm
 
 maintainers:
   - name : Alex Shydlovskyi

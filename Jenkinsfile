@@ -3,12 +3,12 @@ properties([pipelineTriggers([githubPush()])])
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Deploy') {
             steps {
                 git branch: 'main',
                     credentialsId: 'eb41fdb4-beeb-428a-9c0e-20b054fd2597',
                     url: 'git@github.com:skiyl9x/LEMP_stack.git'
-                   sh './build.sh'
+                   sh './deploy.sh'
             }
         }
         stage('Test') {
