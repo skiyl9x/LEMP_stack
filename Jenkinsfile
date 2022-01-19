@@ -16,14 +16,5 @@ pipeline {
                 sh './test.sh'
             }
         }
-	stage('Deploy to Kubernetes'){
-	    steps {
-		kubernetesDeploy{
-			kubeconfigId: 'kubeconf',
-			configs: 'k8s/nginx.yaml',
-			enableConfigSubstitution: true
-		}
-	    }
-	}
     }
 }
