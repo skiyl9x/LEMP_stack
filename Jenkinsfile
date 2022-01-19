@@ -19,7 +19,7 @@ pipeline {
 	stage('Deploy to Kubernetes'){
 	    steps {
 		kubernetesDeploy{
-			kubeonfigId: 'kubeconf',
+			kubeconfigId: 'kubeconf',
 			configs: 'k8s/nginx.yaml',
 			enableConfigSubstitution: true
 		}
