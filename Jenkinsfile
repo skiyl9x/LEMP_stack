@@ -26,6 +26,6 @@ pipeline {
 		sh './prometheus_and_grafana.sh'
 	    }
 	}
-	}
+	
     }
 }
