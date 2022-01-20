@@ -16,10 +16,16 @@ pipeline {
                 sh './test.sh'
             }
         }
-	stage('Deploy_to_k8s_cluster') {
+	stage('Deploy_to_k8s') {
 	    steps {
 		sh './deploy_to_k8s.sh'
             }
+	}
+	stage('Deploy_prometheus_and_grafana_to_k8s') {
+	    steps {
+		sh './prometheus_and_grafana.sh'
+	    }
+	}
 	}
     }
 }

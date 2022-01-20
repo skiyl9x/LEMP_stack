@@ -7,5 +7,6 @@ function error {
   fi;
 }
 
-kubectl apply -f k8s/
+echo " * deploying nginx mariadb php manifests into kubernetes cluster"
+kubectl apply -f k8s/ ; error $? "deploy has failed"
 
