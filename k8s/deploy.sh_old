@@ -7,8 +7,7 @@ function error {
   fi;
 }
 
-docker-compose down
-site_dir="./data/site"
+site_dir="../data/site"
 
 echo "* generate db passwords"
 root_pass=`date +%s | sha256sum | base64 | head -c 32 ; echo` #root mysql pass

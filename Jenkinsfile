@@ -3,7 +3,7 @@ properties([pipelineTriggers([githubPush()])])
 pipeline {
     agent any
     stages {
-        stage('Deploy') {
+        stage('Deploy_by_docker-compose') {
             steps {
                 git branch: 'main',
                     credentialsId: 'eb41fdb4-beeb-428a-9c0e-20b054fd2597',
@@ -16,5 +16,10 @@ pipeline {
                 sh './test.sh'
             }
         }
+	stage() {
+	    steps {
+		sh './deploy_to_k8s.sh'
+            }
+	}
     }
 }
