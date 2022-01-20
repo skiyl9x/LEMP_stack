@@ -16,7 +16,7 @@ pipeline {
                 sh './test.sh'
             }
         }
-	stage() {
+	stage('Deploy_to_k8s_cluster') {
 	    steps {
 		sh './deploy_to_k8s.sh'
             }
