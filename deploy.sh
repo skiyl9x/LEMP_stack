@@ -7,6 +7,7 @@ function error {
   fi;
 }
 
+echo "* deleting old same containers"
 docker-compose down
 site_dir="./data/site"
 
