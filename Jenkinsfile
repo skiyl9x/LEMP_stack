@@ -26,7 +26,7 @@ pipeline {
 		sh './monitoring.sh'
 	    }
 	}
-	stage('Test app in k8s')
+	stage('Test app in k8s'){
 	    steps {
 		sh './test-k8s.sh'
 	    }
