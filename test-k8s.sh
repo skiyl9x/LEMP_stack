@@ -11,20 +11,9 @@ function clear_all {
 }
 
 
-
-
-echo "* start testing"
-
-echo -e "\n* check running containers"
-number_up=`docker-compose ps | grep Up | wc -l`
-docker-compose ps
-if [ $number_up -ne "3" ]; then
-
-  error "some containers is down";
-
-fi
 echo -e "\n* checking http status"
-curl -I http://my-registry.pp.ua
-[[ `curl -Is http://my-registry.pp.ua | grep '200 OK'` ]] || error "bad http status";
+clusterIP=`kubectl cluster-info | head -1 | awk '{print $7}' | awk -F "//" '{print $2}' | awk -F ":" '{print $1}'`
+nginxServicePort=`kubectl get service nginx | tail -1 | awk '{print $5}' | awk -F ":" '{print $2}' | awk -F "/" '{print $1}'`
+curl -I http://$clusterIP:$nginxServicePort
+[[ `curl -Is http://$clusterIP:$nginxServicePort | grep '200 OK'` ]] || error "bad http status";
 
-clear_all

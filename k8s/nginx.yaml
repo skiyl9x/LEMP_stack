@@ -18,15 +18,14 @@ spec:
       - name: nginx
         image: l9xhub/nginx:latest
         volumeMounts:
-        - mountPath: /site
-          name: data
+        - mountPath: "/site"
+          name: hostpath-privileged
         ports:
           - containerPort: 80
       volumes:
-      - name: data
-        hostPath:
-          path: /data/site
-          type: Directory
+        - name: hostpath-privileged
+          persistentVolumeClaim:
+            claimName: wp-pv-volume
       imagePullSecrets:
       - name: private-registry-cred
 ---
@@ -45,4 +44,32 @@ spec:
     nodePort: 30007
   selector:
     run: nginx
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: wp-pv-volume
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: "/mnt/data/site"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: wp-pv-volume
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: manual
 
