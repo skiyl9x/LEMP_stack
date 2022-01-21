@@ -21,7 +21,6 @@ services:
     image: l9xhub/mariadb10.7:latest
     volumes:
       - ${MYSQL_LOGS}:/var/log/mysql/
-      - ${MYSQL_CONFS}:/etc/mysql/
     environment:
       MYSQL_ROOT_PASSWORD: ${ROOT_PASS}
       MYSQL_DATABASE: ${DB_NAME}
