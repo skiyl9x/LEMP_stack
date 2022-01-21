@@ -3,6 +3,9 @@ properties([pipelineTriggers([githubPush()])])
 pipeline {
     agent any
     stages {
+	when {
+            branch "master"
+        }
         stage('Deploy by docker-compose') {
             steps {
                 git branch: 'main',
@@ -15,6 +18,9 @@ pipeline {
             steps {
                 sh './test.sh'
             }
+        }
+	when {
+            branch "production"
         }
 	stage('Deploy app to k8s') {
 	    steps {
