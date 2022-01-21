@@ -5,7 +5,6 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ${NGINX_CONFS}:/etc/nginx/conf.d/
       - ${SITE_HOME_DIR}:/site/
       - ${NGINX_LOGS}:/var/log/nginx/
     links:
