@@ -23,7 +23,7 @@ pipeline {
 	}
 	stage('Deploy moitoring') {
 	    steps {
-		sh './prometheus_and_grafana.sh'
+		sh './monitoring.sh'
 	    }
 	}
 	
