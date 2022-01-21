@@ -7,6 +7,7 @@ services:
     volumes:
       - ${SITE_HOME_DIR}:/site/
       - ${NGINX_LOGS}:/var/log/nginx/
+      - ${NGINX_CONFS}:/etc/nginx/conf.d/
     links:
       - php
 
