@@ -33,6 +33,7 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  namespace: lemp
   name: nginx-deploy
   labels:
     app: web-app
