@@ -4,9 +4,9 @@ pipeline {
     agent any
     stages {
         stage('Deploy by docker-compose') {
-        when {
-            branch "master"
-        }
+            when {
+            	branch "main"
+            }
 
             steps {
                 git branch: 'main',
@@ -17,7 +17,7 @@ pipeline {
         }
         stage('Test') {
 	    when {
-         	branch "master"
+         	branch "main"
             }
 
             steps {
