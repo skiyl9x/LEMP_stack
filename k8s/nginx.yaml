@@ -17,8 +17,16 @@ spec:
       containers:
       - name: nginx
         image: l9xhub/nginx:latest
+        volumeMounts:
+        - mountPath: /site
+          name: data
         ports:
           - containerPort: 80
+      volumes:
+      - name: data
+        hostPath:
+          path: /data/site
+          type: Directory
       imagePullSecrets:
       - name: private-registry-cred
 ---
@@ -29,9 +37,12 @@ metadata:
   labels:
     run: nginx
 spec:
+  type: NodePort
   ports:
   - port: 80
     protocol: TCP
+    targetPort: 80
+    nodePort: 30007
   selector:
     run: nginx
 
