@@ -1,4 +1,5 @@
-/logs/*
 lemp_images/*
 lemp_images/
 .env
+data/site/wp-config.php
+logs/*
